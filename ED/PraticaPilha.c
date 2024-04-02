@@ -16,15 +16,26 @@ unsigned char acessarPilha(Pilha);
 Pilha pushPilha(Pilha, unsigned char);
 Pilha popPilha(Pilha);
 Pilha esvaziarPilha(Pilha);
+int obterProfundidade(Pilha);
+void mostrarPilha(Pilha);
 
 int main(){
 	
 	Pilha S;
 	
 	S = criarPilha();
+	
+	//printf("\n%d\n", obterProfundidade(S));
+	
+	S = pushPilha(S, 'o');
+	S = pushPilha(S, 'r');
+	S = pushPilha(S, 'd');
+	S = pushPilha(S, 'e');
 	S = pushPilha(S, 'p');
 	
-	printf("%c", acessarPilha(S));
+	printf("\n%d\n", obterProfundidade(S));
+	
+	mostrarPilha(S);
 	
 	return 0;
 }
@@ -32,8 +43,7 @@ int main(){
 Pilha criarPilha(){
 	Pilha S;
 	S.topo = sinal;
-	S.topo = S.topo + 1; //Essa linha não deveria existir, mas sem ela, o codigo retorna valor fantasma
-	S.vetor[1] = max - 1;
+	S.vetor[0] = max - 1; // posição 0 = 9
 	return S;
 }
 
@@ -61,7 +71,7 @@ unsigned char acessarPilha(Pilha S){
 }
 
 Pilha pushPilha(Pilha S, unsigned char y){
-	if (S.topo != sinal){
+	if (S.topo != S.vetor[0]){
 		S.topo = S.topo + 1;
 		S.vetor[S.topo] = y;
 	}
@@ -69,9 +79,26 @@ Pilha pushPilha(Pilha S, unsigned char y){
 }
 
 Pilha popPilha(Pilha S){
-	
 	if(S.topo != sinal){
 		S.topo = S.topo - 1;
 	}
 	return S;
+}
+
+int obterProfundidade(Pilha S){
+	int tam;
+	tam = S.topo;
+	if(tam == sinal) tam = ghost;
+	return tam;
+}
+
+void mostrarPilha(Pilha S){
+	int i;
+	if(S.topo == sinal){
+		printf("%d", ghost);
+	}
+	else{
+		for(i = S.topo; i > 0; i--) 
+			printf("%c", S.vetor[i]);
+	}
 }
