@@ -1,5 +1,6 @@
 //Fazendo funções de pilhas
 
+//#include "Booleano.h"
 #include<stdio.h>
 #define max 10
 #define sinal 0
@@ -24,20 +25,24 @@ void copiarPilha(Pilha *, Pilha *);
 int main(){
 	
 	Pilha S;
+	Pilha X;
 	
 	S = criarPilha();
 	
-	S = pushPilha(S, 'o');
-	S = pushPilha(S, 'r');
-	S = pushPilha(S, 'd');
-	S = pushPilha(S, 'e');
+	S = pushPilha(S, 'a');
+	S = pushPilha(S, 'h');
+	S = pushPilha(S, 'l');
+	S = pushPilha(S, 'i');
 	S = pushPilha(S, 'p');
 	
 	//printf("\n%d\n", obterProfundidade(S));
 	
-	//inverter(S);
+	//mostrarPilha(S);
 	
-	mostrarPilha(S);
+	//inverter(&S);
+	copiarPilha(&S, &X);
+	
+	mostrarPilha(X);
 	
 	return 0;
 }
@@ -68,8 +73,8 @@ unsigned char acessarPilha(Pilha S){
 }
 
 Pilha pushPilha(Pilha S, unsigned char y){
-	if (S.topo != S.vetor[0]){
-		S.topo = S.topo + 1;
+	if (S.topo+1 < max){
+		S.topo++;
 		S.vetor[S.topo] = y;
 	}
 	return S;
@@ -85,14 +90,13 @@ Pilha popPilha(Pilha S){
 int obterProfundidade(Pilha S){
 	int tam;
 	tam = S.topo;
-	if(tam == sinal) tam = ghost;
 	return tam;
 }
 
 void mostrarPilha(Pilha S){
 	int i;
 	if(S.topo == sinal){
-		printf("%d", ghost);
+		printf("Lista Vazia!");
 	}
 	else{
 		for(i = S.topo; i > 0; i--) 
@@ -102,13 +106,30 @@ void mostrarPilha(Pilha S){
 
 void inverter(Pilha *S){
     Pilha aux; 
-	int i, f;
+	int i;
     aux = criarPilha();
-    i = 1;
-    while(S->topo != sinal){
-        aux = pushPilha(aux, S->vetor[S->topo]);
-        popPilha(*S); //popPilha(S);
-    }
-    //copiarPilha(&aux,S);
     
+    for(i = S->topo; i > 0; i--){
+		aux = pushPilha(aux, S->vetor[i]);
+	}
+    copiarPilha(&aux, S);
+}
+
+void copiarPilha(Pilha *S, Pilha *X){
+	
+	Pilha A;
+	int i;
+	unsigned char aux; 
+	A = criarPilha();
+		
+	for(i = obterProfundidade(*S); i > 0; i--){
+		aux = acessarPilha(*S);
+		A = pushPilha(*S, aux);
+		printf("ffffffffff");
+	}
+	for(i = obterProfundidade(A); i > 0; i--){
+		aux = acessarPilha(A);
+		(*S) = pushPilha(A, aux);	(*X) = pushPilha(A, aux);
+	}
+	
 }
