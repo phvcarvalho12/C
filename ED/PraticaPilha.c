@@ -109,6 +109,19 @@ void mostrarPilha(Pilha S){
 }
 
 void inverter(Pilha *S){
+    int i; 
+	int j = S->topo;
+	unsigned char aux;
+    for(i = 1; i <= S->topo/2; i++){
+		aux = S->vetor[j];
+		S->vetor[j] = S->vetor[i];
+		S->vetor[i] = aux;
+		j--;
+	}
+}
+
+/*
+void inverter(Pilha *S){
     Pilha aux; 
 	int i;
     aux = criarPilha();
@@ -118,7 +131,7 @@ void inverter(Pilha *S){
 	}
     copiarPilha(&aux, S);
 }
-
+*/
 void copiarPilha(Pilha *S, Pilha *X){
 	(*X) = (*S);
 }
