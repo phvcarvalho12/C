@@ -1,6 +1,6 @@
 //Fazendo funções de pilhas
 
-//#include "Booleano.h"
+#include "Booleano.h"
 #include<stdio.h>
 #define max 10
 #define sinal 0
@@ -12,7 +12,7 @@ typedef struct{
 }Pilha;
 
 Pilha criarPilha();
-//bool PilhaVazia(Pilha);
+bool PilhaVazia(Pilha);
 unsigned char acessarPilha(Pilha);
 Pilha pushPilha(Pilha, unsigned char);
 Pilha popPilha(Pilha);
@@ -60,15 +60,6 @@ Pilha criarPilha(){
 	return S;
 }
 
-//bool PilhaVazia(Pilha S){
-//	if(S.topo == sinal){
-	//	return true;
-	//}
-	//else{
-	//	return false;
-	//}
-//}
-
 unsigned char acessarPilha(Pilha S){
 	unsigned char y;
 	if (S.topo != sinal)
@@ -99,9 +90,8 @@ int obterProfundidade(Pilha S){
 
 void mostrarPilha(Pilha S){
 	int i;
-	if(S.topo == sinal){
+	if(S.topo == sinal)
 		printf("Lista Vazia!");
-	}
 	else{
 		for(i = S.topo; i > 0; i--) 
 			printf("%c", S.vetor[i]);
