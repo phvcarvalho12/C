@@ -1,5 +1,6 @@
 //Fazendo funções de pilhas
 
+//#include <bits/stdc++.h>
 #include "Booleano.h"
 #include<stdio.h>
 #define max 10
