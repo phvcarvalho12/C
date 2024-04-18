@@ -23,38 +23,36 @@ void mostrarPilha(Pilha);
 void inverter(Pilha *);
 void copiarPilha(Pilha *, Pilha *);
 
-/*
 int main(){
-
+	
 	Pilha S;
 	Pilha X;
-
+	
 	S = criarPilha();
 	X = criarPilha();
-
+	
 	S = pushPilha(S, 'a');
 	S = pushPilha(S, 'h');
 	S = pushPilha(S, 'l');
 	S = pushPilha(S, 'i');
 	S = pushPilha(S, 'p');
-
+	
 	//printf("\n%d\n", obterProfundidade(S));
-
+	
 	mostrarPilha(S);
 	printf("\n");
-
+	
 	inverter(&S);
 	mostrarPilha(S);
 	printf("\n");
-
+	
 	inverter(&S);
 	copiarPilha(&S, &X);
-
+	
 	mostrarPilha(X);
 
 	return 0;
 }
-*/
 
 Pilha criarPilha(){
 	Pilha S;
@@ -96,13 +94,13 @@ void mostrarPilha(Pilha S){
 	if(S.topo == sinal)
 		printf("Lista Vazia!");
 	else{
-		for(i = S.topo; i > 0; i--)
+		for(i = S.topo; i > 0; i--) 
 			printf("%c", S.vetor[i]);
 	}
 }
 
 void inverter(Pilha *S){
-    int i;
+    int i; 
 	int j = S->topo;
 	unsigned char aux;
     for(i = 1; i <= S->topo/2; i++){
@@ -115,10 +113,10 @@ void inverter(Pilha *S){
 
 /*
 void inverter(Pilha *S){
-    Pilha aux;
+    Pilha aux; 
 	int i;
     aux = criarPilha();
-
+    
     for(i = S->topo; i > 0; i--){
 		aux = pushPilha(aux, S->vetor[i]);
 	}
@@ -132,9 +130,9 @@ void copiarPilha(Pilha *S, Pilha *X){
 void copiarPilha(Pilha *S, Pilha *X){
 	Pilha A;
 	int i;
-	unsigned char aux;
+	unsigned char aux; 
 	A = criarPilha();
-
+		
 	for(i = obterProfundidade(*S); i > 0; i--){
 		aux = acessarPilha(*S);
 		A = pushPilha(*S, aux);
@@ -142,9 +140,9 @@ void copiarPilha(Pilha *S, Pilha *X){
 	}
 	for(i = obterProfundidade(A); i > 0; i--){
 		aux = acessarPilha(A);
-		(*S) = pushPilha(A, aux);
+		(*S) = pushPilha(A, aux);	
 		(*X) = pushPilha(A, aux);
-		//A = popPilha(A);
+		//A = popPilha(A); 
 	}
 }
 */
