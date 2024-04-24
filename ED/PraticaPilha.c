@@ -13,7 +13,7 @@ typedef struct{
 }Pilha;
 
 Pilha criarPilha();
-bool PilhaVazia(Pilha);
+bool verificarPilhaVazia(Pilha);
 unsigned char acessarPilha(Pilha);
 Pilha pushPilha(Pilha, unsigned char);
 Pilha popPilha(Pilha);
@@ -61,6 +61,15 @@ Pilha criarPilha(){
 	S.topo = sinal;
 	S.vetor[0] = max - 1; // posição 0 = 9
 	return S;
+}
+
+bool verificarPilhaVazia(Pilha ap){
+    bool vazia;
+    if (ap.topo == 0) 
+	 	vazia = true; 
+	else 
+		vazia = false;
+    return vazia;
 }
 
 unsigned char acessarPilha(Pilha S){
