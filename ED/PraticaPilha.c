@@ -21,7 +21,7 @@ Pilha esvaziarPilha(Pilha);
 int obterProfundidade(Pilha);
 void mostrarPilha(Pilha);
 void inverter(Pilha *);
-void inverterPilha(Pilha, Pilha);
+void inverterPilha(Pilha *, Pilha *);
 void copiarPilha(Pilha *, Pilha *);
 
 
@@ -57,7 +57,7 @@ int main(){
 	
 	Pilha Y;
 	Y = criarPilha();
-	inverterPilha(S, Y);
+	inverterPilha(&S, &Y);
 	
 	mostrarPilha(S);
 	printf("\n%d\n", obterProfundidade(Y));
@@ -133,20 +133,20 @@ void inverter(Pilha *S){
 	}
 }
 
-void inverterPilha(Pilha A, Pilha B){
+void inverterPilha(Pilha *A, Pilha *B){
 	Pilha pix; unsigned char aux;
 	pix = criarPilha();
 	int i = 1;
 	
-	while(i <= obterProfundidade(A)){
-		aux = acessarPilha(A);
+	while(i <= obterProfundidade(*A)){
+		aux = acessarPilha(*A);
 		pix = pushPilha(pix, aux);
-		B = pushPilha(B, aux);
-		A = popPilha(A);
+		(*B) = pushPilha(*B, aux);
+		(*A) = popPilha(*A);
 	}
 	while(i <= obterProfundidade(pix)){
 		aux = acessarPilha(pix);
-		A = pushPilha(A, aux);
+		(*A) = pushPilha(*A, aux);
 		pix = popPilha(pix);
 	}
 }
