@@ -23,7 +23,6 @@ void mostrarPilha(Pilha);
 void inverter(Pilha *);
 void inverterPilha(Pilha *, Pilha *);
 void copiarPilha(Pilha *, Pilha *);
-
 /*
 int main(){
 
@@ -60,7 +59,7 @@ int main(){
 	inverterPilha(&S, &Y);
 	
 	mostrarPilha(S);
-	printf("\n%d\n", obterProfundidade(Y));
+	//printf("\n%d\n", obterProfundidade(Y));
 	mostrarPilha(Y);
 
 	return 0;
