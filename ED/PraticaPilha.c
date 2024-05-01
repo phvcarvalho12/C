@@ -23,6 +23,7 @@ void mostrarPilha(Pilha);
 void inverter(Pilha *);
 void inverterPilha(Pilha *, Pilha *);
 void copiarPilha(Pilha *, Pilha *);
+
 /*
 int main(){
 
