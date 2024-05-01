@@ -12,17 +12,11 @@ typedef struct{
 }Lista;
 
 Lista criarLista();
-
 bool verificarListaVazia(Lista);
-
 Lista add(Lista, char);
-
 int obterTamanho(Lista);
-
 void mostrarLista(Lista);
-
 char obterElemento(Lista, int);
-
 Lista inserirLista(Lista, char);
 
 /*
