@@ -40,27 +40,12 @@ int main(){
 
 	//printf("\n%d\n", obterProfundidade(S));
 	
-	
-	mostrarPilha(S);
-	printf("\n");
-
-	inverter(&S);
-	mostrarPilha(S);
-	printf("\n");
-
-	inverter(&S);
-	copiarPilha(&S, &X);
-
-	mostrarPilha(X);
-	printf("\n");
-	
-	
 	Pilha Y;
 	Y = criarPilha();
 	inverterPilha(&S, &Y);
 	
 	mostrarPilha(S);
-	//printf("\n%d\n", obterProfundidade(Y));
+	printf("\n%d\n", obterProfundidade(Y));
 	mostrarPilha(Y);
 
 	return 0;
