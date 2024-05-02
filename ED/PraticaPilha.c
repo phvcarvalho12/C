@@ -76,7 +76,24 @@ unsigned char acessarPilha(Pilha S){
 	return y;
 }
 
+
+unsigned int acessarPilhan(Pilha S){
+	unsigned int y;
+	if (S.topo != sinal)
+		y = S.vetor[S.topo];
+	else y = 0;
+	return y;
+}
+
 Pilha pushPilha(Pilha S, unsigned char y){
+	if (S.topo+1 < max){
+		S.topo++;
+		S.vetor[S.topo] = y;
+	}
+	return S;
+}
+
+Pilha pushPilhan(Pilha S, unsigned int y){
 	if (S.topo+1 < max){
 		S.topo++;
 		S.vetor[S.topo] = y;
@@ -103,6 +120,16 @@ void mostrarPilha(Pilha S){
 	else{
 		for(i = S.topo; i > 0; i--)
 			printf("%c", S.vetor[i]);
+	}
+}
+
+void mostrarPilhan(Pilha S){
+	int i;
+	if(S.topo == sinal)
+		printf("Pilha Vazia!");
+	else{
+		for(i = S.topo; i > 0; i--)
+			printf("%d", S.vetor[i]);
 	}
 }
 

@@ -7,31 +7,47 @@ int main(){
 
 	Pilha *p;
     
+	pushPilhan(*p, 4);
+	pushPilhan(*p, 3);
+	pushPilhan(*p, 5);
+	pushPilhan(*p, 2);
+	pushPilhan(*p, 1);
+
+	ordenar(p);
+	mostrarPilhan(*p);
+
 	return 0;
 }
 
 void ordenar(Pilha *p){
-	
-	Pilha aux, pix;
-	aux = criarPilha();
-	pix = criarPilha();
-	
-	int j, i = 1, tam = obterProfundidade(*p);
-	unsigned int elemento;
+
+	Pilha a, b;
+	a = criarPilha();
+	b = criarPilha();
+
+	int aux;
+	int tam = obterProfundidade(*p);
 	
 	do{
-		while(i != tam){
-			elemento = acessarPilha(*p);
-			pushPilha(aux, elemento); popPilha(*p);
+		while(1 < tam){
+			aux = acessarPilhan(*p);
+			pushPilhan(a, aux); popPilha(*p);
 		}
 		if(verificarPilhaVazia(*p)){
-				for(j = tam; j >= 1; j--){  
-					elemento = acessarPilha(aux);
-					pushPilha(*p,elemento); popPilha(aux);
-				}
-		}else if(){
-			
+			while(1 <= obterProfundidade(a)){
+				aux = acessarPilhan(a);
+				pushPilhan(*p,aux); popPilha(a);
+			}
+		}else{
+			while (1 <= obterProfundidade(a)){
+				aux = acessarPilhan(a);
+				pushPilhan(b, aux); popPilha(a);
+			}
+			while(1 <= obterProfundidade(b)){
+				aux = acessarPilhan(b);
+				pushPilhan(*p, aux); popPilha(b);
+			}	
 		}
 		tam--;
-	}while(tam != 1);
+	}while (tam != 1);
 }
