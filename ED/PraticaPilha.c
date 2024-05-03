@@ -15,18 +15,22 @@ typedef struct{
 Pilha criarPilha();
 bool verificarPilhaVazia(Pilha);
 unsigned char acessarPilha(Pilha);
+unsigned int acessarPilhan(Pilha);
 Pilha pushPilha(Pilha, unsigned char);
+Pilha pushPilhan(Pilha, unsigned int);
 Pilha popPilha(Pilha);
 Pilha esvaziarPilha(Pilha);
 int obterProfundidade(Pilha);
 void mostrarPilha(Pilha);
+void mostrarPilhan(Pilha);
 void inverter(Pilha *);
 void inverterPilha(Pilha *, Pilha *);
 void copiarPilha(Pilha *, Pilha *);
+void concatenar(Pilha *, Pilha *);
 
 /*
 int main(){
-
+	
 	Pilha S;
 
 	S = criarPilha();
@@ -38,16 +42,25 @@ int main(){
 	S = pushPilha(S, 'i');
 	S = pushPilha(S, 'p');
 
-	//printf("\n%d\n", obterProfundidade(S));
+	Pilha n;
+	n = criarPilha();
 	
-	Pilha Y;
-	Y = criarPilha();
-	inverterPilha(&S, &Y);
+	n = pushPilhan(n, 1);
+	n = pushPilhan(n, 2);
+	//n = pushPilhan(n, 3);
+	//n = pushPilhan(n, 4);
+	//n = pushPilhan(n, 5);
 	
-	mostrarPilha(S);
-	printf("\n%d\n", obterProfundidade(Y));
-	mostrarPilha(Y);
-
+	Pilha p;
+	p = criarPilha();
+	
+	p = pushPilhan(p, 4);
+	p = pushPilhan(p, 3);
+	p = pushPilhan(p, 5);
+	
+	concatenar(&n,&p);
+	mostrarPilhan(n);
+	
 	return 0;
 }
 */
@@ -187,3 +200,19 @@ void copiarPilha(Pilha *S, Pilha *X){
 	}
 }
 
+void concatenar(Pilha *p, Pilha *f){
+	int aux;
+	Pilha a;
+	a = criarPilha();
+	
+	while(1 <= obterProfundidade(*f)){
+		aux = acessarPilha(*f);
+		a = pushPilhan(a, aux); 
+		(*f) = popPilha(*f);
+	}
+	while(obterProfundidade(a) >= 1){
+		aux = acessarPilha(a);
+		(*p) = pushPilhan(*p,aux); 
+		a = popPilha(a);
+	}
+}
