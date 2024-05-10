@@ -22,14 +22,6 @@ void mostrarConjunto(Conjunto *);
 void inverter(Conjunto *);
 void copiarConjunto(Conjunto *, Conjunto *);
 
-int main(){
-	Conjunto S;
-	criarConjunto(&S);
-	add(&S, 'y');
-	
-	return 0;
-}
-
 void criarConjunto(Conjunto *S){
 	S->card = 0;
 	//S->Set[0] = Max - 1; 

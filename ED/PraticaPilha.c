@@ -3,6 +3,7 @@
 //#include <bits/stdc++.h>
 #include "Booleano.h"
 #include<stdio.h>
+#include<time.h>
 #define max 10
 #define sinal 0
 #define ghost 36
@@ -13,6 +14,7 @@ typedef struct{
 }Pilha;
 
 Pilha criarPilha();
+Pilha construirPilha(Pilha,int);
 bool verificarPilhaVazia(Pilha);
 unsigned char acessarPilha(Pilha);
 unsigned int acessarPilhan(Pilha);
@@ -27,6 +29,7 @@ void inverter(Pilha *);
 void inverterPilha(Pilha *, Pilha *);
 void copiarPilha(Pilha *, Pilha *);
 void concatenar(Pilha *, Pilha *);
+
 
 /*
 int main(){
@@ -70,6 +73,19 @@ Pilha criarPilha(){
 	S.topo = sinal;
 	S.vetor[0] = max - 1; // posição 0 = 9
 	return S;
+}
+//pilha = construirPilha(10);
+Pilha construirPilha(Pilha p; int y){
+	
+	int rd, i;
+	srand((int) time(NULL));
+	
+	for(i = 1; i <= y; i++){
+		rd = rand(rand() % y) + 1;
+		p = pushPilha(p, rd);
+	}
+	
+	return p;
 }
 
 bool verificarPilhaVazia(Pilha ap){
