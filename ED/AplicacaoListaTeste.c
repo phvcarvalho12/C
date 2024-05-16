@@ -25,7 +25,7 @@ int main(){
 	
 }
 
-int criarLista(){
+Lista criarLista(){
 	Lista a;
 	a.tamanho = 0;
 	return a;
