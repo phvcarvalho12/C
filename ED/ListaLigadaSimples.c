@@ -27,13 +27,12 @@ typedef struct{
 Lista criarLista();                   	// cria uma lista vazia	
 bool verListaVazia(Lista*);             // devolve TRUE se a lista é vazia
 int obterTamanho(Lista*);              	// devolve o tamanho da lista
-
 void mostrarLista(Lista*);              // mostra na tela os elementos da lista					
-
 void inserir(Lista*, int);           	// acrescenta um novo elemento ao inicio da lista
-
 int localizarElemento(Lista*, int);		// devolve a ordem do registro que contém y ou zero
-
+void removerPri(Lista *);
+void removerUlt(Lista *);
+Lista esvaziarLista(Lista);
 
 int main(){
 	Lista L;
@@ -70,10 +69,15 @@ int main(){
 	mostrarLista(&L);
 	
 	
-	w = 90;
+	w = 10;
 	ordem = localizarElemento(&L,w); 
 	printf("\n item = %d  posicao = %d ",w,ordem);
 	
+	removerUlt(&L);
+	printf("\n");
+	mostrarLista(&L);
+	//L = esvaziarLista(L);
+	//mostrarLista(&L);
 
 	printf("\n\n FIM ");
 	return 0;
@@ -113,7 +117,7 @@ void inserir(Lista *ap, int y){
 void mostrarLista(Lista * ap){
     Celula *p;
     if(ap->inicio == NULL)
-    	printf("Lista Vazia!\n");
+    	printf("\nLista Vazia!\n");
 	else{
 		p = ap->inicio;
 		do{
@@ -132,7 +136,49 @@ int localizarElemento(Lista * ap, int y){
         	aux = aux->next;
     }
 	if(aux == NULL){
-        cont = ghost;
+        cont = 0;
     }
 	return cont;
-}	
+}
+
+void removerPri(Lista * ap){
+	Celula * aux = ap->inicio;
+	Celula * pix = aux;
+	if(ap->inicio != NULL){
+		aux = aux->next;
+		free(pix);
+		ap->inicio = aux;
+	}
+}
+
+void removerUlt(Lista * ap){
+	Celula * aux = ap->inicio;
+	Celula * pix = aux;
+	if(ap->inicio != NULL){
+		do{
+			pix = aux;
+			aux = aux->next;
+		}while(aux != NULL);
+		free(aux);
+		pix->next = NULL;
+		ap->tamanho--;
+	}
+}
+
+Lista esvaziarLista(Lista ap){
+	Celula * aux = ap.inicio;
+	Celula * pix = aux;
+	int cont = 0;
+	while(cont <= ap.tamanho && ap.tamanho > 0){
+		aux = aux->next;
+		free(pix);
+		pix = aux;
+		cont++;
+	}
+	if(cont == ap.tamanho){
+		free(pix);
+	}
+	ap.tamanho = 0;
+	ap.inicio = NULL;
+	return ap;
+}
