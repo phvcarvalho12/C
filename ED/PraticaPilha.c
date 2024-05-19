@@ -1,10 +1,11 @@
 //Fazendo funções de pilhas
 
 //#include <bits/stdc++.h>
-#include "Booleano.h"
+#include "Booleanoc.h"
 #include<stdio.h>
+#include<stdlib.h>
 #include<time.h>
-#define max 10
+#define max 100
 #define sinal 0
 #define ghost 36
 
@@ -14,7 +15,7 @@ typedef struct{
 }Pilha;
 
 Pilha criarPilha();
-Pilha construirPilha(Pilha,int);
+Pilha construirPilha(int);
 bool verificarPilhaVazia(Pilha);
 unsigned char acessarPilha(Pilha);
 unsigned int acessarPilhan(Pilha);
@@ -31,9 +32,9 @@ void copiarPilha(Pilha *, Pilha *);
 void concatenar(Pilha *, Pilha *);
 
 
-/*
+
 int main(){
-	
+	/*
 	Pilha S;
 
 	S = criarPilha();
@@ -63,10 +64,15 @@ int main(){
 	
 	concatenar(&n,&p);
 	mostrarPilhan(n);
+	*/
 	
+	int n = 10; // Número de posições
+    Pilha p = construirPilha(n);
+    mostrarPilhan(p);
+
 	return 0;
 }
-*/
+
 
 Pilha criarPilha(){
 	Pilha S;
@@ -74,18 +80,23 @@ Pilha criarPilha(){
 	S.vetor[0] = max - 1; // posição 0 = 9
 	return S;
 }
-//pilha = construirPilha(10);
-Pilha construirPilha(Pilha p; int y){
-	
-	int rd, i;
-	srand((int) time(NULL));
-	
-	for(i = 1; i <= y; i++){
-		rd = rand(rand() % y) + 1;
-		p = pushPilha(p, rd);
+
+Pilha construirPilha(int n) {
+    Pilha p = criarPilha();
+    int i, aux, rd;
+    // Preenche a pilha com elementos de 1 a n
+    for (i = 1; i <= n; i++) {
+        p = pushPilhan(p, i);
+    }
+    // Embaralhamento de Knuth
+    srand(time(NULL));
+    for (i = n; i > 0; i--) {
+        rd = 1 + (RAND_MAX * rand() + rand()) % i;//rand() % (i + 1);
+        aux = p.vetor[i];
+        p.vetor[i] = p.vetor[rd];
+        p.vetor[rd] = aux;
 	}
-	
-	return p;
+    return p;
 }
 
 bool verificarPilhaVazia(Pilha ap){
@@ -158,7 +169,7 @@ void mostrarPilhan(Pilha S){
 		printf("Pilha Vazia!");
 	else{
 		for(i = S.topo; i > 0; i--)
-			printf("%d", S.vetor[i]);
+			printf("%d ", S.vetor[i]);
 	}
 }
 
@@ -191,11 +202,6 @@ void inverterPilha(Pilha *A, Pilha *B){
 		pix = popPilha(pix);
 	}
 }
-/*
-void copiarPilha(Pilha *S, Pilha *X){
-	(*X) = (*S);
-}
-*/
 
 void copiarPilha(Pilha *S, Pilha *X){
 	Pilha A;
