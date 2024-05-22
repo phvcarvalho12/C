@@ -6,15 +6,15 @@
 */							
 
 #include <stdio.h>
-#include "PilhaPan.h"       
+#include "Pedro_Carvalho_PARTE1.h"       
      
 int main(){
     int MP,n,q;
     Pilha Pan;
-    MP = 10;
+    MP = 5;
     Pan = construirPilha(MP);
     printf("\n\n  pilha de panquecas original ");     mostrarPilha(Pan);
-    
+    printf("\n\n");
     n = MP;
     do{
     	q = contarPilha(Pan,n);
@@ -30,3 +30,4 @@ int main(){
     printf("\n FIM \n");
     return 0;
 }
+

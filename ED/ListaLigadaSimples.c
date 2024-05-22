@@ -33,6 +33,8 @@ int localizarElemento(Lista*, int);		// devolve a ordem do registro que contém 
 void removerPri(Lista *);
 void removerUlt(Lista *);
 Lista esvaziarLista(Lista);
+void buscaRemove(Lista *, int);
+void buscaInsere(Lista *, int);
 
 int main(){
 	Lista L;
@@ -69,16 +71,24 @@ int main(){
 	mostrarLista(&L);
 	
 	
-	w = 10;
-	ordem = localizarElemento(&L,w); 
-	printf("\n item = %d  posicao = %d ",w,ordem);
+	//w = 10;
+	//ordem = localizarElemento(&L,w); 
+	//printf("\n item = %d  posicao = %d ",w,ordem);
 	
-	removerUlt(&L);
-	printf("\n");
-	mostrarLista(&L);
+	//removerUlt(&L);
+	printf("\n\n");
+	//mostrarLista(&L);
 	//L = esvaziarLista(L);
 	//mostrarLista(&L);
-
+	w = 10;
+	buscaRemove(&L, w);
+	mostrarLista(&L);
+	
+	printf("\n\n");
+	w = 2;
+	buscaInsere(&L, w);
+	mostrarLista(&L);
+	
 	printf("\n\n FIM ");
 	return 0;
 }
@@ -94,9 +104,9 @@ Lista criarLista(){
 bool verListaVazia(Lista * ap){
     bool ok;
 	if(ap->tamanho == 0){
-    	ok = true;
+    	ok = TRUE;
 	}else{
-		ok = false;
+		ok = FALSE;
 	}
 	return ok;
 }
@@ -166,19 +176,71 @@ void removerUlt(Lista * ap){
 }
 
 Lista esvaziarLista(Lista ap){
-	Celula * aux = ap.inicio;
-	Celula * pix = aux;
 	int cont = 0;
-	while(cont <= ap.tamanho && ap.tamanho > 0){
-		aux = aux->next;
-		free(pix);
-		pix = aux;
+	if(ap.tamanho != 0){
+		Celula * aux = ap.inicio;
+		Celula * pix = aux;
 		cont++;
-	}
-	if(cont == ap.tamanho){
-		free(pix);
+		while(cont < ap.tamanho){
+			aux = aux->next;
+			free(pix);
+			pix = aux;
+			cont++;
+		}
 	}
 	ap.tamanho = 0;
 	ap.inicio = NULL;
 	return ap;
+}
+
+void buscaRemove(Lista * L, int y){
+	int cont = 0;
+	if(L->inicio != NULL){
+		Celula * aux = L->inicio;
+		Celula * pix = aux;
+		cont++;
+		while(aux != NULL && aux->item != y){
+			pix = aux;
+			aux = aux->next;
+			cont++;
+		}
+		if(cont == 1){
+			aux = aux->next;
+			free(pix);
+			L->inicio = aux;
+			L->tamanho--;
+		}else if(aux->item == y && aux->next != NULL){
+			Celula * z = aux;
+			aux = aux->next;
+			free(z);
+			pix->next = aux;
+			L->tamanho--;
+		}else if(aux->next == NULL){
+			free(aux);
+			pix->next = NULL;
+			L->tamanho--;
+		}
+	}
+}
+
+void buscaInsere(Lista * L, int y){
+	if(L->inicio != NULL){
+		Celula * aux = L->inicio;
+		while(aux->next != NULL && aux->item != y){
+			aux = aux->next;
+		}
+		if(aux->item != y){
+			Celula * x = malloc(sizeof(Celula));
+			x->item = y;
+			x->next = L->inicio;
+			L->inicio = x;
+			L->tamanho++;
+		}
+	}else{
+		Celula * x = malloc(sizeof(Celula));
+		x->item = y;
+		x->next = L->inicio;
+		L->inicio = x;
+		L->tamanho++;
+	}
 }
