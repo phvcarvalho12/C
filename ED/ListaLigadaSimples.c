@@ -35,6 +35,8 @@ void removerUlt(Lista *);
 Lista esvaziarLista(Lista);
 void buscaRemove(Lista *, int);
 void buscaInsere(Lista *, int);
+Lista concatenarListas(Lista *, Lista *);
+
 
 int main(){
 	Lista L;
@@ -157,7 +159,9 @@ void removerPri(Lista * ap){
 	if(ap->inicio != NULL){
 		aux = aux->next;
 		free(pix);
+		aux->next = ap->inicio;
 		ap->inicio = aux;
+		ap->tamanho--;
 	}
 }
 
@@ -243,4 +247,8 @@ void buscaInsere(Lista * L, int y){
 		L->inicio = x;
 		L->tamanho++;
 	}
+}
+
+Lista concatenarListas(Lista * A, Lista * B){
+	
 }
