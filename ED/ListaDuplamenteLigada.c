@@ -49,6 +49,20 @@ int main(){
 	inserir(&x, 2);
 	inserir(&x, 3);
 	mostrarLista(&x);
+	
+	printf("\n\n");
+	int y = localizarElemento(&x, 2);
+	printf("%d", y);
+	
+	printf("\n\n");
+	buscaRemove(&x, 2);
+	mostrarLista(&x);
+	
+	//x = esvaziarLista(x);
+	//mostrarLista(&x);
+	
+	printf("\n\nFIM\n");
+	return 0;
 }
 
 Lista criarLista(){
@@ -103,5 +117,85 @@ void inserir(Lista * A, int y){
 }
 
 int localizarElemento(Lista * A, int y){
-	
+	int cont = 0;
+	if(A->inicio != NULL){
+		cont++;
+		Celula * aux = A->inicio;
+		while(aux->suc != NULL && aux->item != y){
+			aux = aux->suc;
+			cont++;
+		}
+		if(aux->item != y){
+			cont = 0;
+		}
+	}
+	return cont;
+}
+
+void removerPri(Lista * A){
+	if(A->inicio != NULL){
+		Celula * aux = A->inicio;
+		Celula * pix = aux;
+		aux = aux->suc;
+		free(pix);
+		aux->pre = NULL;
+		A->inicio = aux;
+		A->tamanho--;
+	}
+}
+
+void removerUlt(Lista * A){
+	if(A->inicio != NULL){
+		Celula * aux = A->fim;
+		Celula * pix = aux->pre;
+		free(aux);
+		pix->suc = NULL;
+		A->fim = pix;
+		A->tamanho--;
+	}
+}
+
+Lista esvaziarLista(Lista A){
+	if(A.inicio != NULL){
+		Celula * aux = A.inicio;
+		Celula * pix = aux;
+		while(aux != NULL){
+			free(pix);
+			aux = aux->suc;
+			pix = aux;
+		}
+		A.inicio = NULL;
+		A.fim = NULL;
+		A.tamanho = 0;
+	}
+}
+
+void buscaRemove(Lista * A, int y) {
+	if(A->inicio!=NULL) {
+		Celula *p;
+		p = A->inicio;
+		while(p != NULL && p->item!=y)
+			p = p->suc;
+		if(p!=NULL){
+			Celula *ant;
+			Celula *pos;
+			ant = p->pre;
+			pos = p->suc;
+			
+			if(ant!=NULL)
+				ant->suc = pos;
+			else
+				A->inicio = pos;
+			
+			if(pos!=NULL)	
+				pos->pre = ant;
+			else
+				A->fim = ant;
+			
+			free(p);
+			
+			A->tamanho--;
+		}
+			
+	}
 }
