@@ -79,3 +79,20 @@ Fila popFila ( Fila Q ) {
 		}
 	return Q;
 }
+
+void push(Fila * q, int y){
+	Celula * novo = malloc(sizeof(Celula));
+	Celula * u;
+	novo->ponto = y;
+	novo->suc = NULL;
+	if(q->inicio == NULL){
+		novo->pre = NULL;
+		q->fim = novo;
+		q->inicio = novo
+	}else{
+		u = q->fim;
+		u->suc = novo;
+		novo->pre = u;
+		q->fim = novo;
+	}
+}
