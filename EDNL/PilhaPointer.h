@@ -1,16 +1,17 @@
 /* Pilha de pointer */
 /*
   Arquivo: PilhaPointer.h
-  Autor: Fubá
+  Autor: Fubï¿½
   Data: 28/08/24 15:01
-  Descrição: Este programa implementa um pacote de funções para o tipo Pilha.
-  Os elementos da pilha são endereços - tipo pointer "coringa".
-  A pilha é armazenada em um array a partir da posição zero.
-  O campo topo mostra a posição onde deverá ser armazenado o próximo item.
+  Descriï¿½ï¿½o: Este programa implementa um pacote de funï¿½ï¿½es para o tipo Pilha.
+  Os elementos da pilha sï¿½o endereï¿½os - tipo pointer "coringa".
+  A pilha ï¿½ armazenada em um array a partir da posiï¿½ï¿½o zero.
+  O campo topo mostra a posiï¿½ï¿½o onde deverï¿½ ser armazenado o prï¿½ximo item.
   O valor constante Max determina o tamanho do array.
 */
 #include "Booleano.h"
-
+#include <stdio.h>
+#include <stdlib.h>
 #define MaxPilha 20
 
 typedef struct {
@@ -18,7 +19,7 @@ typedef struct {
     void *tabela[MaxPilha];
 } Pilha;
 
-//protótipos
+//protï¿½tipos
 void criarPilhaVazia(Pilha *);
 void *acessarTopo(Pilha *);
 bool verificarPilhaVazia(Pilha *);
@@ -26,7 +27,7 @@ bool verificarPilhaCheia(Pilha *);
 void pushPilha(Pilha *, void *);
 void popPilha(Pilha *);
 
-// implementações
+// implementaï¿½ï¿½es
 void criarPilhaVazia(Pilha *a){
     a->topo = 0;
 }
